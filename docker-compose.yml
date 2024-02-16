@@ -1,0 +1,24 @@
+version: "3.5"
+
+services:
+  app:
+    image: portainer/portainer-ee:alpine
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - app_data:/data
+    networks:
+      proxy_apps:
+    labels:
+      backups: "true"
+    dns:
+      - "1.1.1.1"
+      - "1.0.0.1"
+
+volumes:
+  app_data:
+
+networks:
+  proxy_apps:
+    name: proxy_apps
+    external: true
