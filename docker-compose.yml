@@ -9,11 +9,6 @@ services:
       - app_data:/data
     networks:
       proxy_apps:
-    labels:
-      - ofelia.restart=true
-      - ofelia.enabled=true
-      - "ofelia.job-exec.${COMPOSE_PROJECT_NAME}dbbackup.schedule=${BACKUP_CRON_SCHEDULE:-0 0 3 * * *}"
-      - "ofelia.job-exec.${COMPOSE_PROJECT_NAME}dbbackup.command=sh -c 'apk --no-cache add sqlite && sqlite3 /data/portainer.db \".backup /data/portainer.db.backup\"'"
 
 volumes:
   app_data:
